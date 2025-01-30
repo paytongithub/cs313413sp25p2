@@ -46,19 +46,18 @@ public class TestIterator {
     final var i = list.iterator();
     assertTrue(i.hasNext());
     assertEquals(33, i.next().intValue());
-    // TODO fix the expected values in the assertions below
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(44, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(55, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
-    assertEquals(0, i.next().intValue());
+    assertEquals(66, i.next().intValue());
     assertFalse(i.hasNext());
   }
 
@@ -74,13 +73,14 @@ public class TestIterator {
     final var i = list.iterator();
     while (i.hasNext()) {
       if (i.next() == 77) {
-        i.remove(); // TODO Question: What happens if you use list.remove(Integer.valueOf(77))?
+        i.remove();
       }
     }
-    // TODO using assertEquals and List.of, express which values are left in the list
+    assertEquals(List.of(33, 44, 55, 66), list);
+
     // See TestList.java for examples of how to use List.of; also see the Java List
     // interface for more information
-    fail("Not yet implemented"); // remove this line when done
+
   }
 
   @Test
@@ -94,7 +94,15 @@ public class TestIterator {
     list.add(66);
     double sum = 0;
     int n = 0;
-    // TODO use an iterator and a while loop to compute the average (mean) of the values
+
+    final var i = list.iterator();
+    while (i.hasNext()) {
+      sum += list.get(n);
+      i.next();
+      n++;
+    }
+
+
     // (defined as the sum of the items divided by the number of items)
     // testNonempty shows how to use an iterator; use i.hasNext() in the while loop condition
     assertEquals(61.3, sum / n, 0.1);
